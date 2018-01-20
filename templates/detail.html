@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>用户详情</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.4.2/css/AdminLTE.min.css"/>
+
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		  <h2>{{ context['text']['userProfile']['profile']['user_name'] }} 详情</h2>
+		  <div class="row">
+		  	<div class="col-md-3">
+
+		          <!-- Profile Image -->
+		          <div class="box box-primary">
+		            <div class="box-body box-profile">
+		              <img class="profile-user-img img-responsive img-circle" src="{{ context['text']['userProfile']['profile']['headurl'] }}" alt="User profile picture">
+
+		              <h3 class="profile-username text-center">{{ context['text']['userProfile']['profile']['user_name'] }}</h3>
+
+
+		              <ul class="list-group list-group-unbordered">
+		                <li class="list-group-item">
+		                  <b>粉丝</b> <a class="pull-right">{{ context['text']['userProfile']['ownerCount']['fan'] }}</a>
+		                </li>
+		                <li class="list-group-item">
+		                  <b>关注</b> <a class="pull-right">{{ context['text']['userProfile']['ownerCount']['follow'] }}</a>
+		                </li>
+		                <li class="list-group-item">
+		                  <b>作品</b> <a class="pull-right">{{ context['text']['userProfile']['ownerCount']['photo'] }}</a>
+		                </li>
+		              </ul>
+		            </div>
+		            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          
+        </div>
+
+        <div class="col-md-9">
+        	<div class="box box-primary">
+        		<div class="box-body">
+        			<table class="table table-hover">
+                <tbody>
+                <tr>
+                  <th>作品</th>
+                  <th>播放量</th>
+                  <th>点赞量</th>
+                  <th>评论量</th>
+                </tr>
+                {% for feed in context['feed']['feeds'] %}
+                <tr>
+                  <td>{{ feed.photo_id }}</td>
+                  <td><span class="label label-success">{{ feed.view_count }}<span></td>
+                  <td>{{ feed.like_count }}</td>
+                  <td><span class="label label-primary">{{ feed.comment_count }}</span></td>
+                  
+                </tr>
+                {% endfor %}
+              </tbody></table>
+        		</div>
+        	</div>
+        </div>
+        <!-- /.col-md-9 -->
+		  
+	</div>
+  
+  
+</body>
+</html>
